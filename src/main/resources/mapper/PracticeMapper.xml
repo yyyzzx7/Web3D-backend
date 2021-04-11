@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboottest1.mapper.PracticeMapper">
+
+    <select id="practice" resultType="java.util.Map">
+        select studyUuid as uuid,name,description
+        from practice
+        where studyUuid = #{studyUuid}
+    </select>
+    <select id="subPractice" resultType="java.util.Map">
+        select name,type,choice,score
+        from subpractice
+        where studyUuid = #{studyUuid}
+    </select>
+
+
+</mapper>

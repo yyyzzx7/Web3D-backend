@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboottest1.mapper.StudioMapper">
+
+    <select id="studio" resultType="java.util.Map">
+        select uuid,name,modelURL,playerModelURL,description,playerSpawn,playerRotateYAxis,collisionBox,groundName,receiveShadowName,groundLightMapUrl,
+               playerAvatarURL,directionalLightPosition,directionalLightDirection,bookShelfStartName,practiceTableStartName,miniMap
+        from studio
+        where uuid = #{uuid}
+    </select>
+
+    <select id="studioRotateCamera" resultType="java.util.Map">
+        select mesh,rotate
+        from rotatecamera
+        where uuid = #{uuid}
+    </select>
+
+    <select id="studioReceptionist" resultType="java.util.Map">
+        select receptionistModelURL,receptionistSpawn,receptionistRotateYAxis,distanceTrigger,greetingSoundURL,introductionSoundURL
+        from receptionist
+        where uuid = #{uuid}
+    </select>
+
+    <select id="studioAI" resultType="java.util.Map">
+        select AIid,name,info,infoSoundURL,title,position,modelURL,idleAnimationGroupName,walkAnimationGroupName,
+               leftTurnAnimationGroupName,rightTurnAnimationGroupName,avatarURL,miniMapAvatarURL
+        from studioai
+        where uuid = #{uuid}
+    </select>
+
+
+    <select id="studioAIPath" resultType="java.util.Map">
+        select nodeName,residenceTime
+        from studioaipath
+        where uuid = #{uuid} and AIid = #{AIid}
+    </select>
+
+
+
+    <select id="studioBook" resultType="java.util.Map">
+        select vid as uuid,area,videoName,videoURL,textureImgURL,thickness
+        from studiobook
+        where uuid = #{uuid}
+    </select>
+    <select id="studioEBook" resultType="java.util.Map">
+        select eid as uuid,bookName,bookURL,textureImgURL,thickness
+        from studioebook
+        where uuid = #{uuid}
+    </select>
+
+
+    <select id="studioTask" resultType="java.util.Map">
+        select tid as uuid,name,description,status,goal,rate
+        from studiotask
+        where uuid = #{uuid}
+    </select>
+    <select id="studioSubTask" resultType="java.util.Map">
+        select name,type,status,description,rate,progress,studyUuid
+        from studiosubtask
+        where uuid = #{uuid} and tid = #{tid}
+    </select>
+
+
+</mapper>

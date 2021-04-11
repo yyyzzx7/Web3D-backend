@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboottest1.mapper.UserMapper">
+
+  <!--/user/login-->
+  <!--验证登录-->
+  <select id="userLogin" parameterType="User" resultType="User">
+    select login_name, login_pwd from web3d_user where login_name = #{username} and login_pwd = #{password}
+  </select>
+
+
+  <!--/user/achievement-->
+  <!--获取用户成就-->
+  <select id="userAchievement" resultType="java.util.Map">
+    select iconURL,title,description,finished,type
+    from achievement as A, user_achievement as UA
+    where A.aid = UA.aid and UA.user_id = #{user_id};
+  </select>
+
+
+</mapper>

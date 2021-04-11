@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboottest1.mapper.CollegeMapper">
+    <!--查询学院所有ID-->
+    <select id="collegeAllID" resultType="String">
+        select uuid from college
+    </select>
+
+
+    <!--college/map-->
+    <!--查询学院模型-->
+    <select id="collegeModel" resultType="java.util.Map">
+        select uuid, name, modelUrl, position, scale, rotation
+        from college
+    </select>
+
+
+    <!--college/description-->
+    <!--查询学院描述-->
+    <select id="collegeDescription" resultType="java.util.Map">
+        select uuid,name,position,description,imgUrl
+        from college
+        where uuid = #{uuid}
+    </select>
+    <!--查询某个学院包含的工作室-->
+    <select id="collegeStudio" resultType="java.util.Map">
+        select S.uuid, S.name ,S.description,S.logoUrl
+        from college as C, college_floor_studio as CS, studio as S
+        where C.uuid = CS.c_uuid and CS.uuid = S.uuid
+        and C.uuid = #{uuid}
+    </select>
+
+
+
+
+    <!--college/floor-->
+    <!--查询学院信息-->
+    <select id = 'collegeInf' resultType="java.util.Map">
+        select uuid,totalFloor,name
+        from college
+        where uuid = #{c_uuid}
+    </select>
+    <!--查询学院所有楼层号-->
+    <select id = 'collegeAllFloor' resultType="java.lang.Integer">
+        select CS.f_uuid
+        from college as C, college_floor_studio as CS
+        where C.uuid = CS.c_uuid and C.uuid = #{c_uuid}
+        group by f_uuid;
+    </select>
+    <!--查询楼层信息-->
+    <select id = 'floorAllStudio' resultType="java.util.Map">
+        select S.uuid, S.name,S.location,S.description,S.logoTextureURL,S.posterTextureURL,S.logoURL,S.videoURL
+        from college as C, college_floor_studio as CS, studio as S
+        where C.uuid = CS.c_uuid and CS.uuid = S.uuid
+        and C.uuid = #{c_uuid} and f_uuid = #{f_uuid}
+    </select>
+
+
+
+
+</mapper>
