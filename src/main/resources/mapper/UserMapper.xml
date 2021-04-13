@@ -5,7 +5,7 @@
   <!--/user/login-->
   <!--验证登录-->
   <select id="userLogin" parameterType="User" resultType="User">
-    select login_name, login_pwd from web3d_user where login_name = #{username} and login_pwd = #{password}
+    select * from web3d_user where login_name = #{username} and login_pwd = #{password}
   </select>
 
 

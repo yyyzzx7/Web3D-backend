@@ -110,27 +110,38 @@ public class StudioService {
 
 
 
-    // studio/task/工作室ID
+
+
+    // studio/task/｛工作室uuid｝
     // 任务
     public List<Map<String,Object>> studioTask(String uuid){
         List<Map<String,Object>> taskList = studioMapper.studioTask(uuid);
         for(int i = 0; i < taskList.size(); i++){
-            Integer tid = (Integer) taskList.get(i).get("uuid");
-            if(taskList.get(i).get("rate").toString().equals("0.0")){
-                // taskList.get(i).remove("rate");
-                taskList.get(i).put("rate", 5);
-            }
+            Integer tid = (Integer) taskList.get(i).get("uuid");// tid字段改名uuid
+            taskList.get(i).remove("rate");// 不显示
 
-            List<Map<String, Object>> subTaskList = studioMapper.studioSubTask(uuid,tid.toString());
-            // 如果rate字符为空，则删除; 否则转为JSON格式
+            List<Map<String, Object>> subTaskList = studioMapper.studioSubTask(tid.toString());
+
             for(int j = 0; j < subTaskList.size(); j++){
-                if(subTaskList.get(j).get("rate").toString().equals("0.0")){
-                    // subTaskList.get(j).remove("rate");
-                    subTaskList.get(j).put("rate", 5);
-                }
+                subTaskList.get(j).remove("rate"); // 不显示rate
             }
             taskList.get(i).put("subTask",subTaskList);
         }
         return taskList;
+    }
+
+    // studio/task/score/{任务tid}
+    // 任务
+    public Map<String,Object> studioTaskScore(String tid){
+        Map<String,Object> taskMap = studioMapper.task(tid);
+
+        taskMap.put("rate", 5);        // 默认5
+
+        List<Map<String, Object>> subTaskList = studioMapper.studioSubTask(tid);
+        for(int i = 0; i < subTaskList.size(); i++){
+            subTaskList.get(i).put("rate", 5);
+        }
+        taskMap.put("subTask", subTaskList);
+        return taskMap;
     }
 }

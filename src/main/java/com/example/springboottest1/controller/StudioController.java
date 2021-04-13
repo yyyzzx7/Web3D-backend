@@ -21,18 +21,21 @@ public class StudioController {
     public Map<String,Object> studio(@PathVariable("uuid") String uuid){
         return studioService.studio(uuid);
     }
-
     @RequestMapping(value = "/book/{uuid}", method = GET, produces = "application/json;charset = UTF-8")
-    public List<Map<String,Object>> studioBook(@PathVariable("uuid") String uuid){
-        return studioService.studioBook(uuid);
+    public List<Map<String,Object>> studioBook(@PathVariable("uuid") String vid){
+        return studioService.studioBook(vid);
     }
     @RequestMapping(value = "/ebook/{uuid}", method = GET, produces = "application/json;charset = UTF-8")
-    public List<Map<String,Object>> studioEBook(@PathVariable("uuid") String uuid){
-        return studioService.studioEBook(uuid);
+    public List<Map<String,Object>> studioEBook(@PathVariable("uuid") String eid){
+        return studioService.studioEBook(eid);
     }
     @RequestMapping(value = "/task/{uuid}", method = GET, produces = "application/json;charset = UTF-8")
     public List<Map<String,Object>> studioTask(@PathVariable("uuid") String uuid){
         return studioService.studioTask(uuid);
+    }
+    @RequestMapping(value = "/task/score/{uuid}", method = GET, produces = "application/json;charset = UTF-8")
+    public Map<String,Object> studioTaskScore(@PathVariable("uuid") String tid){
+        return studioService.studioTaskScore(tid);
     }
 
 }

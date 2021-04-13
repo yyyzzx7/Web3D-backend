@@ -21,11 +21,6 @@ public class CollegeController {
     // 学院信息
     @RequestMapping(value = "/college", method = GET, produces = "application/json;charset = UTF-8")
     public List<Map<String, Object>> colleges(){
-        /*List<Map<String, Object>> list = collegeService.collegeModel();
-        if(!list.isEmpty()){
-            return list;
-        }
-        return null;*/
         return collegeService.collegeModel();
     }
 
@@ -38,7 +33,6 @@ public class CollegeController {
         map.put("mapModelURL", "model/map.glb");
         return map;
     }
-
 
 
 

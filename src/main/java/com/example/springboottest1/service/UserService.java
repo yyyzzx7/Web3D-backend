@@ -18,8 +18,8 @@ public class UserService {
     private UserMapper userMapper;
 
     // 用户登录
-    public User userLogin(String login_name, String login_pwd){
-        return userMapper.userLogin(login_name, login_pwd);
+    public User userLogin(String username, String password){
+        return userMapper.userLogin(username, password);
     }
 
 

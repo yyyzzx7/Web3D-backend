@@ -2,7 +2,6 @@ package com.example.springboottest1.service;
 
 import com.example.springboottest1.mapper.CollegeMapper;
 import com.example.springboottest1.util.DataConvert;
-import org.apache.ibatis.annotations.One;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

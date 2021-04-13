@@ -32,10 +32,14 @@ public interface StudioMapper {
     List<Map<String,Object>> studioEBook(@Param("uuid") String uuid);
 
 
+
+
     // 工作室任务
     List<Map<String,Object>> studioTask(@Param("uuid") String uuid);
-    // 工作室子任务
-    List<Map<String,Object>> studioSubTask(@Param("uuid") String uuid,  @Param("tid") String tid);
+    // 任务
+    Map<String, Object> task(@Param("tid") String tid);
+    // 主任务的子任务
+    List<Map<String,Object>> studioSubTask(@Param("tid") String tid);
 
 
 }

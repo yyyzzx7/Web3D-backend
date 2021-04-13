@@ -13,7 +13,7 @@ import java.util.Map;
 @Component
 public interface UserMapper {
     //用户登录
-    User userLogin(@Param("username") String login_name, @Param("password") String login_pwd);
+    User userLogin(@Param("username") String username, @Param("password") String password);
 
 
     // 用户成就
